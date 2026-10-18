@@ -1,7 +1,7 @@
 {
   "name": "backend-rolling",
   "version": "1.0.0",
-  "description": "API de autenticación con JWT (registro y login) - Rolling Code School",
+  "description": "API de auth",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
@@ -26,6 +26,8 @@
     "mongoose": "^9.11.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
     "nodemon": "^3.1.14"
   }
 }
