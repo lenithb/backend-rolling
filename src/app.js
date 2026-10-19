@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// no otro día hago la ruta de tareas
+// despues agrego categories y tasks
 app.use("/api/auth", authRoutes);
 
 module.exports = app;
