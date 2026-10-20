@@ -1,0 +1,27 @@
+meta {
+  name: task-sin-titulo
+  type: http
+  seq: 13
+}
+
+post {
+  url: http://localhost:3000/api/tasks
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZDQyNjdhOWZiNmU4YWE1MDY0YWQwMyIsImlhdCI6MTc5MjQ1NTk0NSwiZXhwIjoxNzkyNDU5NTQ1fQ.voR5BO0kgTkbBzFC-15hcSOu36L59nv1bVt9yjUxgy4
+}
+
+body:json {
+  {
+    
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+  forwardAuthorizationHeader: false
+}

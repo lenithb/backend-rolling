@@ -1,0 +1,28 @@
+meta {
+  name: task-crear-ok
+  type: http
+  seq: 11
+}
+
+post {
+  url: http://localhost:3000/api/tasks
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZDQyNjdhOWZiNmU4YWE1MDY0YWQwMyIsImlhdCI6MTc5MjQ1NTk0NSwiZXhwIjoxNzkyNDU5NTQ1fQ.voR5BO0kgTkbBzFC-15hcSOu36L59nv1bVt9yjUxgy4
+}
+
+body:json {
+  {
+    "titulo":"Estudiar JWT",
+    "categoria":"6ad6b00bc5760ebab362a037"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+  forwardAuthorizationHeader: false
+}

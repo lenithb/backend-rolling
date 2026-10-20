@@ -1,0 +1,28 @@
+meta {
+  name: login-ok
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/api/auth/login
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email":"lenith@test.com",
+    "password":"123456"
+  }
+}
+
+vars:post-response {
+  token: res.body.token
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+  forwardAuthorizationHeader: false
+}

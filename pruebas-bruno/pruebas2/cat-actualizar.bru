@@ -1,19 +1,19 @@
 meta {
-  name: faltan-datos
+  name: cat-actualizar
   type: http
-  seq: 4
+  seq: 9
 }
 
-post {
-  url: http://localhost:3000/api/auth/register
+put {
+  url: http://localhost:3000/api/categories/6ad6b00bc5760ebab362a037
   body: json
   auth: inherit
 }
 
 body:json {
   {
-    "username":"pepe",
-    "email":"pepe@test.com"
+    "nombre":"Trabajo 2",
+    "estado":true
   }
 }
 

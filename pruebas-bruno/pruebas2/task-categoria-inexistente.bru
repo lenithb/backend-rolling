@@ -1,0 +1,28 @@
+meta {
+  name: task-categoria-inexistente
+  type: http
+  seq: 12
+}
+
+post {
+  url: http://localhost:3000/api/tasks
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZDQyNjdhOWZiNmU4YWE1MDY0YWQwMyIsImlhdCI6MTc5MjQ1NTk0NSwiZXhwIjoxNzkyNDU5NTQ1fQ.voR5BO0kgTkbBzFC-15hcSOu36L59nv1bVt9yjUxgy4
+}
+
+body:json {
+  {
+    "titulo":"Estudiar JWT",
+    "categoria":"64b7f0c2a1b2c3d4e5f6a7b8"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+  forwardAuthorizationHeader: false
+}

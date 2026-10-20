@@ -1,19 +1,19 @@
 meta {
-  name: login-ok
+  name: faltan-datos
   type: http
-  seq: 5
+  seq: 2
 }
 
 post {
-  url: http://localhost:3000/api/auth/login
+  url: http://localhost:3000/api/auth/register
   body: json
   auth: inherit
 }
 
 body:json {
   {
-    "email":"lenith@test.com",
-    "password":"123456"
+    "username":"pepe",
+    "email":"pepe@test.com"
   }
 }
 

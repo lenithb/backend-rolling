@@ -1,0 +1,21 @@
+meta {
+  name: task-listar
+  type: http
+  seq: 14
+}
+
+get {
+  url: http://localhost:3000/api/tasks
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhZDQyNjdhOWZiNmU4YWE1MDY0YWQwMyIsImlhdCI6MTc5MjQ1NTk0NSwiZXhwIjoxNzkyNDU5NTQ1fQ.voR5BO0kgTkbBzFC-15hcSOu36L59nv1bVt9yjUxgy4
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+  forwardAuthorizationHeader: false
+}

@@ -1,0 +1,17 @@
+meta {
+  name: cat-no-existe
+  type: http
+  seq: 8
+}
+
+get {
+  url: http://localhost:3000/api/categories/64b7f0c2a1b2c3d4e5f6a7b8
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+  forwardAuthorizationHeader: false
+}

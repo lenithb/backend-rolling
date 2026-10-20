@@ -1,20 +1,18 @@
 meta {
-  name: register-email-repetido
+  name: cat-nombre-corto
   type: http
   seq: 3
 }
 
 post {
-  url: http://localhost:3000/api/auth/register
+  url: http://localhost:3000/api/categories
   body: json
   auth: inherit
 }
 
 body:json {
   {
-    "username": "lenith",
-    "email": "lenith@test.com",
-    "password": "123456"
+    "nombre":"ab"
   }
 }
 
