@@ -45,4 +45,40 @@ const validarTarea = [
   manejarErrores,
 ];
 
-module.exports = { validarId, validarCategoria, validarTarea };
+const validarProducto = [
+  body("nombre")
+    .exists().withMessage("el nombre es obligatorio").bail()
+    .isString().withMessage("el nombre debe ser texto").bail()
+    .trim()
+    .isLength({ min: 1, max: 100 }).withMessage("el nombre debe tener entre 1 y 100 caracteres"),
+  body("categoria")
+    .exists().withMessage("la categoria es obligatoria").bail()
+    .isMongoId().withMessage("la categoria debe ser un ObjectId valido"),
+  body("precio")
+    .optional()
+    .isFloat({ min: 0 }).withMessage("el precio debe ser un numero mayor o igual a 0"),
+  body("descripcion").optional().isString().withMessage("la descripcion debe ser texto"),
+  body("img").optional().isString().withMessage("la imagen debe ser texto"),
+  manejarErrores,
+];
+
+const validarActualizarProducto = [
+  body("nombre")
+    .optional()
+    .isString().withMessage("el nombre debe ser texto").bail()
+    .trim()
+    .isLength({ min: 1, max: 100 }).withMessage("el nombre debe tener entre 1 y 100 caracteres"),
+  body("precio")
+    .optional()
+    .isFloat({ min: 0 }).withMessage("el precio debe ser un numero mayor o igual a 0"),
+  body("categoria")
+    .optional()
+    .isMongoId().withMessage("la categoria debe ser un ObjectId valido"),
+  body("descripcion").optional().isString().withMessage("la descripcion debe ser texto"),
+  body("img").optional().isString().withMessage("la imagen debe ser texto"),
+  body("estado").optional().custom(esBooleano).withMessage("el estado debe ser booleano"),
+  body("disponible").optional().custom(esBooleano).withMessage("disponible debe ser booleano"),
+  manejarErrores,
+];
+
+module.exports = { validarId, validarCategoria, validarTarea, validarProducto, validarActualizarProducto };
