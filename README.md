@@ -1,11 +1,11 @@
-# API de Tareas con Autenticación, Categorías y Validaciones
+# API de Tareas con Autenticación, Categorías, Productos y Validaciones
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/banner-blanco.png">
   <img src="assets/banner-blanco.png" alt="Rolling Code School · Comisión Web24 · Alumno: Lenith" width="100%">
 </picture>
 
-API REST desarrollada con Node.js, Express y MongoDB (Mongoose). Incluye registro e inicio de sesión con JWT, CRUD de categorías, CRUD de tareas asociadas a categorías y al usuario autenticado, y validación de datos con express-validator.
+API REST desarrollada con Node.js, Express y MongoDB (Mongoose). Incluye registro e inicio de sesión con JWT, CRUD de categorías, CRUD de tareas asociadas a categorías y al usuario autenticado, CRUD de productos con control de stock y validación de datos con express-validator.
 
 ## Instalación
 
@@ -28,9 +28,9 @@ Variables de entorno:
 ```
 src/
   config/        conexión a la base de datos
-  models/        User, Category, Task
+  models/        User, Category, Task, Product
   controllers/   lógica de cada recurso
-  routes/        auth, categories, tasks
+  routes/        auth, categories, tasks, products
   middlewares/   auth.js, validators.js
 pruebas-bruno/   colección de pruebas
 assets/          logo y capturas de las pruebas
@@ -52,8 +52,14 @@ assets/          logo y capturas de las pruebas
 | POST | `/api/tasks` | Sí |
 | PUT | `/api/tasks/:id` | Sí |
 | DELETE | `/api/tasks/:id` | Sí |
+| GET | `/api/products` | No |
+| POST | `/api/products` | Sí |
+| PUT | `/api/products/:id` | No |
+| DELETE | `/api/products/:id` | No |
 
 Las rutas de tareas requieren el header `Authorization: Bearer <token>`. Cada usuario solo accede a sus propias tareas.
+
+El listado de productos devuelve como máximo 5 productos activos, junto con el total de productos activos que hay en la base.
 
 ## Ejemplos
 
@@ -89,6 +95,22 @@ Respuesta `201`:
 
 Respuesta `201`: la tarea creada, con `completada: false` y el `usuario` del token.
 
+**Crear producto** — `POST /api/products`
+
+```json
+{ "nombre": "Mouse", "precio": 1500, "categoria": "6ad6b00bc5760ebab362a037" }
+```
+
+Respuesta `201`:
+
+```json
+{ "_id": "6ad6b00bc5760ebab362a038", "nombre": "Mouse", "precio": 1500, "estado": true, "disponible": true }
+```
+
+**Listar productos** — `GET /api/products`
+
+Respuesta `200`: `{ "total": 12, "productos": [ ... ] }`, con un máximo de 5 productos activos.
+
 **Error de validación** — `400`:
 
 ```json
@@ -102,6 +124,7 @@ Respuesta `201`: la tarea creada, con `completada: false` y el `usuario` del tok
 
 - Categoría: `nombre` obligatorio, texto, de 3 a 50 caracteres y único; `estado`, si se envía, booleano.
 - Tarea: `titulo` obligatorio; `descripcion`, `fechaEntrega` (ISO) y `completada` opcionales; `categoria` opcional, debe ser un ObjectId válido y existir.
+- Producto: `nombre` obligatorio, texto, de 1 a 100 caracteres y único; `categoria` obligatoria, debe ser un ObjectId válido y existir; `precio` opcional, número mayor o igual a 0; `descripcion` e `img` opcionales, de tipo texto. En la actualización todos los campos son opcionales, y `estado` y `disponible` deben ser booleanos.
 - Los ids en la URL deben ser ObjectId válidos.
 
 Códigos de respuesta: `200` y `201` en éxito, `400` por validación, `401` por token o credenciales inválidas, `404` si el recurso no existe, `409` por duplicados.
