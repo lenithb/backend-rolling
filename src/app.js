@@ -3,6 +3,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/auth.routes");
 const categoryRoutes = require("./routes/category.routes");
 const taskRoutes = require("./routes/task.routes");
+const productRoutes = require("./routes/product.routes");
 
 const app = express();
 
@@ -10,9 +11,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// task y categories agregadas
+// task, categories y products agregadas
 app.use("/api/auth", authRoutes);
 app.use("/api/categories", categoryRoutes);
 app.use("/api/tasks", taskRoutes);
+app.use("/api/products", productRoutes);
 
 module.exports = app;
